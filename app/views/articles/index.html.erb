@@ -1,0 +1,50 @@
+<article>
+ <center> 
+    <h1 style="background-color: pink;">Show All Articles</h1>
+  
+
+  <%= button_to "New Article", new_article_path, id: "open-contacts-dialog-btn", class: "btn btn-primary inbox-sf-add-btn tip", method: :get %>
+
+  <p>Our blog has <%= Article.public_count %> public and counting!</p>
+
+  <%= form_with url: articles_path, method: :get, local: true, class: 'mb-3' do %>
+    <div class="input-group">
+      <%= text_field_tag :query, params[:query], placeholder: "Search articles", class: 'form-control' %>
+      <div class="input-group-append">
+      <br>
+        <%= submit_tag 'Search', class: 'btn btn-primary' %>
+        <br>
+      </div>
+    </div>
+  <% end %>
+</center>
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |article| %>
+        <tr>
+          <th><%= article.id %></th>
+          <td>
+            <a href="/articles/<%= article.id %>">
+              <%= article.title %>
+            </a>
+          </td>
+          <td>
+            <%= button_to 'Delete', article_path(article), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+          </td>
+          <td>
+            <%= link_to 'View', article_path(article), class: 'btn btn-primary' %>
+          </td>
+          <td>
+            <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-primary ms-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</article>

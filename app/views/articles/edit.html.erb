@@ -1,0 +1,12 @@
+
+<h1>Edit Article</h1>
+
+<%= render "form", article: @article %>
+
+<br>
+
+ <%= button_to "Back Button", articles_path, id: "open-contacts-dialog-btn", class: "btn btn-primary inbox-sf-add-btn tip", method: :get %>
+
+
+
+ <br> <%= button_to "Delete", article_path(@article), method: :delete, class: "btn btn-danger ms-2" %>

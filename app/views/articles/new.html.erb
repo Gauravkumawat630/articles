@@ -1,0 +1,42 @@
+
+
+   <h1 style="color:SteelBlue  ;"><center>New Article form </center></h1> 
+
+
+
+<%= form_with model: @article do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    
+    <%= form.text_field :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+<br>
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+<br>
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, options_for_select(['public', 'private', 'archived'], @article.status) %>
+    <% @article.errors.full_messages_for(:status).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+<br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<br></centers>
+
+
+ <%= button_to "Back Button", articles_path, id: "open-contacts-dialog-btn", class: "btn btn-primary inbox-sf-add-btn tip", method: :get %>
+
+    
